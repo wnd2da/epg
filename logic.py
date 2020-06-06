@@ -69,6 +69,11 @@ class Logic(object):
                 Logic.scheduler_start()
             from plugin import plugin_info
             Util.save_from_dict_to_json(plugin_info, os.path.join(os.path.dirname(__file__), 'info.json'))   
+
+            from framework.common.util import SJVASupportControl
+            tmp = SJVASupportControl.epg_refresh()
+            logger.debug('EPG 결과 : %s', tmp)
+
         except Exception as e: 
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
