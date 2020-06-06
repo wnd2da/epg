@@ -67,13 +67,15 @@ class Logic(object):
             Logic.db_init()
             if ModelSetting.get_bool('auto_start'):
                 Logic.scheduler_start()
+            else:
+                Logic.one_execute()
             from plugin import plugin_info
             Util.save_from_dict_to_json(plugin_info, os.path.join(os.path.dirname(__file__), 'info.json'))   
 
-            from framework.common.util import SJVASupportControl
-            tmp = SJVASupportControl.epg_refresh()
-            logger.debug('EPG 결과 : %s', tmp)
-
+            # 리턴안되는 문제 발생
+            #from framework.common.util import SJVASupportControl
+            #tmp = SJVASupportControl.epg_refresh()
+            #logger.debug('EPG 결과 : %s', tmp)
         except Exception as e: 
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
