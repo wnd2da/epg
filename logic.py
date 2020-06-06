@@ -16,7 +16,6 @@ import threading
 
 # third-party
 import requests
-from requests.auth import HTTPDigestAuth, HTTPBasicAuth
 from flask import Blueprint, request, Response, send_file, render_template, redirect, jsonify
 from sqlalchemy import desc
 from lxml import etree as ET

@@ -104,7 +104,7 @@ class LogicNormal(object):
             try:
                 import tvheadend
                 channel_list = db.session.query(ModelEpgMakerChannel).all()
-                tvh_list = tvheadend.Logic.channel_list()
+                tvh_list = tvheadend.LogicNormal.channel_list()
                 if tvh_list is None:
                     return 'not setting tvheadend'
                 for tvh_ch in tvh_list['lineup']:
