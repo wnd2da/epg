@@ -179,9 +179,11 @@ class LogicNormal(object):
                 
                 for klive_channel in klive_channel_list:
                     epg_entity = ModelEpgMakerChannel.get_instance_by_name(klive_channel.epg_name)
-                    if epg_entity is None:
-                        logger.debug('no channel_instance :%s', klive_channel.title)
-                        continue
+                    #if epg_entity is None:
+                    #    logger.debug('no channel_instance :%s', klive_channel.title)
+                    #    #continue
+                    #    # 2020-06-08
+                    #    # Plex dvr같은 경우 내용은 없어도 채널태그는 있어야함.
                     channel_tag = ET.SubElement(root, 'channel') 
                     channel_tag.set('id', '%s|%s' % (klive_channel.source, klive_channel.source_id))
                     if epg_entity is not None:
@@ -199,7 +201,7 @@ class LogicNormal(object):
                     if epg_entity is None:
                         logger.debug('no channel_instance :%s', klive_channel.title)
                         continue
-                        #2020-06-08                 
+                                     
                     LogicNormal.make_channel(root, epg_entity, '%s|%s' % (klive_channel.source, klive_channel.source_id))
             except Exception as e: 
                 logger.error('Exception:%s', e)
