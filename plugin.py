@@ -65,6 +65,8 @@ def home():
 def detail(sub): 
     if sub == 'setting':
         arg = ModelSetting.to_dict()
+        arg['scheduler'] = str(scheduler.is_include(package_name))
+        arg['is_running'] = str(scheduler.is_running(package_name))
         from system.model import ModelSetting as SystemModelSetting
         ddns = SystemModelSetting.get('ddns')  
         arg['ddns'] = ddns

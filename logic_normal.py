@@ -198,7 +198,8 @@ class LogicNormal(object):
                     epg_entity = ModelEpgMakerChannel.get_instance_by_name(klive_channel.epg_name)
                     if epg_entity is None:
                         logger.debug('no channel_instance :%s', klive_channel.title)
-                        continue                    
+                        continue
+                        #2020-06-08                 
                     LogicNormal.make_channel(root, epg_entity, '%s|%s' % (klive_channel.source, klive_channel.source_id))
             except Exception as e: 
                 logger.error('Exception:%s', e)
