@@ -330,8 +330,10 @@ class ModelEpgMakerChannel(db.Model):
             search_name = ModelEpgMakerChannel.util_get_search_name(search_name)
             channel_list = db.session.query(ModelEpgMakerChannel).all()
             for c in channel_list:
-                if search_name in c.search_name.split('|'):
-                    return [c.name, c.category]
+                tmp = c.search_name.split('|')
+                for t in tmp:
+                    if search_name ==  ModelEpgMakerChannel.util_get_search_name(t):
+                        return [c.name, c.category]
         except Exception as e: 
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
