@@ -180,7 +180,9 @@ class LogicNormal(object):
                 for klive_channel in klive_channel_list:
                     epg_entity = ModelEpgMakerChannel.get_instance_by_name(klive_channel.epg_name)
                     if epg_entity is None:
-                        tmp = ModelEpgMakerChannel.get_match_name(klive_channel.epg_name)
+                        # 2020-06-14
+                        tmp = ModelEpgMakerChannel.get_match_name(klive_channel.title)
+                        #tmp = ModelEpgMakerChannel.get_match_name(klive_channel.epg_name)
                         if tmp is not None :
                             epg_entity = ModelEpgMakerChannel.get_instance_by_name(tmp[0])
                     #if epg_entity is None:
@@ -203,7 +205,7 @@ class LogicNormal(object):
                 for klive_channel in klive_channel_list:
                     epg_entity = ModelEpgMakerChannel.get_instance_by_name(klive_channel.epg_name)
                     if epg_entity is None:
-                        tmp = ModelEpgMakerChannel.get_match_name(klive_channel.epg_name)
+                        tmp = ModelEpgMakerChannel.get_match_name(klive_channel.title)
                         if tmp is not None :
                             epg_entity = ModelEpgMakerChannel.get_instance_by_name(tmp[0])
                     if epg_entity is None:
