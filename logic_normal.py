@@ -60,12 +60,13 @@ class LogicNormal(object):
             except:
                 pass
             
+            """
             if app.config['config']['server']:
                 if ret == 'refresh' or (ret=='recent' and os.path.exists(os.path.join(path_data, 'output', 'xmltv_all.xml')) == False):
                     if LogicNormal.make_xml('all'):
                         SJVASupportControl.epg_upload()
                         logger.debug('all epg make..')
-            
+            """
         except Exception as e: 
             logger.error('Exception:%s', e)
             logger.error(traceback.format_exc())
@@ -212,7 +213,7 @@ class LogicNormal(object):
                         logger.debug('no channel_instance :%s', klive_channel.title)
                         continue
                                      
-                    LogicNormal.make_channel(root, epg_entity, '%s|%s' % (klive_channel.source, klive_channel.source_id))
+                    LogicNormal.make_channel(root, epg_entity, '%s|%s' % (klive_channel.source, klive_channel.source_id), category=klive_channel.group)
             except Exception as e: 
                 logger.error('Exception:%s', e)
                 logger.error(traceback.format_exc())
@@ -292,7 +293,7 @@ class LogicNormal(object):
 
    
     @staticmethod
-    def make_channel(root, channel_instance, channel_id):
+    def make_channel(root, channel_instance, channel_id, category=None):
         try:
             logger.debug('CH : %s', channel_instance.name)
             for program in channel_instance.programs:
@@ -347,7 +348,7 @@ class LogicNormal(object):
 
                 category_tag = ET.SubElement(program_tag, 'category')
                 category_tag.set('lang', 'ko')
-                category_tag.text = channel_instance.category
+                category_tag.text = category if category is not None else channel_instance.category
                 # TODO 영화부터 분기, 영화가 아니라면 모두 에피소드 처리해야함
                 if not program.is_movie:
                     if program.episode_number is not None:
