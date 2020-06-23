@@ -42,21 +42,27 @@ class LogicNormal(object):
             try:
                 import klive
                 if ret == 'refresh' or (ret=='recent' and os.path.exists(os.path.join(path_data, 'output', 'xmltv_klive.xml')) == False):
+                    logger.debug('EPG klive epg make start..')
                     LogicNormal.make_xml('klive')
+                    logger.debug('EPG klive epg make end..')
             except:
                 pass
             
             try:
                 import tvheadend
                 if ret == 'refresh' or (ret=='recent' and os.path.exists(os.path.join(path_data, 'output', 'xmltv_tvheadend.xml')) == False):
+                    logger.debug('EPG tvheadend epg make start..')
                     LogicNormal.make_xml('tvheadend')
+                    logger.debug('EPG tvheadend epg make end..')
             except:
                 pass
 
             try:
                 import hdhomerun
                 if ret == 'refresh' or (ret=='recent' and os.path.exists(os.path.join(path_data, 'output', 'xmltv_hdhomerun.xml')) == False):
+                    logger.debug('EPG hdhomerun epg make start..')
                     LogicNormal.make_xml('hdhomerun')
+                    logger.debug('EPG hdhomerun epg make end..')
             except:
                 pass
             
