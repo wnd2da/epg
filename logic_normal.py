@@ -110,7 +110,7 @@ class LogicNormal(object):
         if call_from == 'tvheadend':
             try:
                 import tvheadend
-                channel_list = db.session.query(ModelEpgMakerChannel).all()
+                channel_list = ModelEpgMakerChannel.get_channel_list()
                 tvh_list = tvheadend.LogicNormal.channel_list()
                 if tvh_list is None:
                     return 'not setting tvheadend'
@@ -118,8 +118,9 @@ class LogicNormal(object):
                     search_name = ModelEpgMakerChannel.util_get_search_name(tvh_ch['GuideName'])
                     logger.debug('Search Text: %s', search_name)
                     for t in channel_list:
-                        logger.debug('Value Text: %s', t.search_name) 
-                        if search_name in t.search_name.split('|'):
+                        logger.debug('Value Text: %s', t.search_name)
+                        # epg_channel에서 search_name이 존재하지 않는게 있어서 name과도 조건 비교
+                        if search_name in t.search_name.split('|') or tvh_ch['GuideName'] == t.name:
                             logger.debug('MATCH : %s', tvh_ch['GuideName']) 
                             tvh_ch['channel_instance'] = t
                             break
