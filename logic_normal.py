@@ -116,12 +116,12 @@ class LogicNormal(object):
                     return 'not setting tvheadend'
                 for tvh_ch in tvh_list['lineup']:
                     search_name = ModelEpgMakerChannel.util_get_search_name(tvh_ch['GuideName'])
-                    logger.debug('Search Text: %s', search_name)
+                    # logger.debug('Search Text: %s', search_name)
                     for t in channel_list:
-                        logger.debug('Value Text: %s', t.search_name)
+                        # logger.debug('Value Text: %s', t.search_name)
                         # epg_channel에서 search_name이 존재하지 않는게 있어서 name과도 조건 비교
                         if search_name in t.search_name.split('|') or tvh_ch['GuideName'] == t.name:
-                            logger.debug('MATCH : %s', tvh_ch['GuideName']) 
+                            # logger.debug('MATCH : %s', tvh_ch['GuideName']) 
                             tvh_ch['channel_instance'] = t
                             break
                     if 'channel_instance' not in tvh_ch:
