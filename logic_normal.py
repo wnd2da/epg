@@ -118,7 +118,7 @@ class LogicNormal(object):
                     search_name = ModelEpgMakerChannel.util_get_search_name(tvh_ch['GuideName'])
                     logger.debug('Search Text: %s', search_name)
                     for t in channel_list:
-                        logger.debug('Value Text: %s', t.search_name) 
+                        logger.debug('Value Text:: %s', t.search_name) 
                         if search_name in t.search_name.split('|'):
                             logger.debug('MATCH : %s', tvh_ch['GuideName']) 
                             tvh_ch['channel_instance'] = t
