@@ -129,7 +129,7 @@ class LogicNormal(object):
             except Exception as e: 
                 logger.error('Exception:%s', e)
                 logger.error(traceback.format_exc())
-            return
+
             try:
                 generated_on = str(datetime.now())
                 logger.debug(generated_on)
